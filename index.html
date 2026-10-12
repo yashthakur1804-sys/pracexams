@@ -1,0 +1,141 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Practical Exam</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f1f5f9;
+  color: #172033;
+}
+header {
+  background: #172554;
+  color: white;
+  text-align: center;
+  padding: 25px 12px;
+}
+header h1 { margin: 0 0 8px; }
+main {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 0 12px;
+}
+.card {
+  background: white;
+  padding: 18px;
+  margin-bottom: 18px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px #0001;
+}
+h2 { color: #1d4ed8; }
+pre {
+  background: #111827;
+  color: #d1fae5;
+  padding: 14px;
+  border-radius: 8px;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+button {
+  background: #2563eb;
+  color: white;
+  border: 0;
+  padding: 10px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.output {
+  background: #ecfdf5;
+  padding: 12px;
+  border-radius: 8px;
+}
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #64748b;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Practical Exam</h1>
+  <p>Questions | Programs | Outputs</p>
+</header>
+
+<main id="practicals"></main>
+
+<footer>Made for practical exam preparation</footer>
+
+<script>
+const practicals = [
+  {
+    title: "Practical 1: Hello World",
+    question: "Write a Python program to display Hello World.",
+    code: 'print("Hello World")',
+    output: "Hello World"
+  },
+  {
+    title: "Practical 2: Addition",
+    question: "Write a Python program to add two numbers.",
+    code: "a = 10\nb = 20\nprint(a + b)",
+    output: "30"
+  },
+  {
+    title: "Practical 3: Even or Odd",
+    question: "Write a Python program to check whether a number is even or odd.",
+    code: "n = 8\nif n % 2 == 0:\n    print('Even')\nelse:\n    print('Odd')",
+    output: "Even"
+  }
+];
+
+const container = document.getElementById("practicals");
+
+practicals.forEach((p, i) => {
+  const card = document.createElement("section");
+  card.className = "card";
+
+  const title = document.createElement("h2");
+  title.textContent = p.title;
+
+  const question = document.createElement("p");
+  question.textContent = p.question;
+
+  const codeTitle = document.createElement("h3");
+  codeTitle.textContent = "Program Code";
+
+  const pre = document.createElement("pre");
+  pre.textContent = p.code;
+
+  const btn = document.createElement("button");
+  btn.textContent = "Copy Code";
+  btn.onclick = async () => {
+    try {
+      await navigator.clipboard.writeText(p.code);
+      btn.textContent = "Copied!";
+    } catch {
+      btn.textContent = "Copy unavailable";
+    }
+  };
+
+  const outputTitle = document.createElement("h3");
+  outputTitle.textContent = "Output";
+
+  const output = document.createElement("div");
+  output.className = "output";
+  output.textContent = p.output;
+
+  card.append(title, question, codeTitle, pre, btn,
+              outputTitle, output);
+  container.appendChild(card);
+});
+</script>
+
+</body>
+</html>
